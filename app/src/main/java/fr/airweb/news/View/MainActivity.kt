@@ -1,5 +1,6 @@
 package fr.airweb.news.View
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.airweb.news.Model.RetrofitClientInstance
@@ -21,14 +22,13 @@ class MainActivity : AppCompatActivity() {
         val call = service?.getAllNews()
         call?.enqueue(object : Callback <NewsList>{
             override fun onFailure(call: Call<NewsList>, t: Throwable) {
-                TODO("not implemented if JSON not parsed from internet: do the offline version")  //To change body of created functions use File | Settings | File Templates.
+                Log.v("erreur",t.message,t)//To change body of created functions use File | Settings | File Templates.
                 Toast.makeText(applicationContext,"Error reading JSON",Toast.LENGTH_LONG).show()
                 }
 
             override fun onResponse(call: Call<NewsList>, response: Response<NewsList>) {
                 val body = response?.body()
                 val news = body?.news
-                var size = news?.size
 
             }
 
