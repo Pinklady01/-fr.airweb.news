@@ -1,12 +1,14 @@
-
+package fr.airweb.news.View
 import android.os.Bundle
-import android.widget.Toolbar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import fr.airweb.news.Model.RetrofitClientInstance
+import fr.airweb.news.Model.dto.NewsList
 import fr.airweb.news.R
 import fr.airweb.news.ViewModel.GetNewService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +17,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+        val service = RetrofitClientInstance.retrofitInstance?.create(GetNewService::class.java)
+        val call = service?.getAllNews()
+        call?.enqueue(object : Callback <NewsList>{
+            override fun onFailure(call: Call<NewsList>, t: Throwable) {
+                TODO("not implemented if JSON not parsed from internet: do the offline version")  //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(applicationContext,"Error reading JSON",Toast.LENGTH_LONG).show()
+                }
 
-        RetrofitClientInstance.retrofitInstance?.create(GetNewService::class.java)
+            override fun onResponse(call: Call<NewsList>, response: Response<NewsList>) {
+                val body = response?.body()
+                val news = body?.news
+                var size = news?.size
+
+            }
+
+        })
+
     }
 
 
