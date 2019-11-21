@@ -21,10 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
-
         val service = RetrofitClientInstance.retrofitInstance?.create(GetNewService::class.java)
         val call = service?.getAllNews()
         call?.enqueue(object : Callback <NewsList>{
@@ -41,12 +37,15 @@ class MainActivity : AppCompatActivity() {
                         Log.i("", "Title is : ${it.title}")
                         Log.i("", "Type is : ${it.type}")
                     }*/
+                //TODO : Lire la table news
+
                 }
 
             override fun onResponse(call: Call<NewsList>, response: Response<NewsList>) {
                 val body = response?.body()
-                val news = body?.news
+                //val news = body?.news
 
+                //TODO : Ecraser les données de la table et les remplacer par les nouvelles
 
                 /**
                  * insert data into the database*/
