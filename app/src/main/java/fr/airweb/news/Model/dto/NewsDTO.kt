@@ -3,8 +3,9 @@ package fr.airweb.news.Model.dto
 import com.google.gson.annotations.SerializedName
 
 data class NewsDTO (var nid: Int = 0,
-                    var type: String,
-                    var date: String,
-                    var title: String,
-                    var content: String,
-                    var dateformated: String)
+                    var type: String? = null,
+                    var date: String? = null,
+                    var title: String? = null,
+                    var picture: String? = null,
+                    var content: String? = null,
+                    var dateformated: String? = null)

@@ -13,4 +13,7 @@ interface NewsApp_DAO {
 
     @Query("select * from NewsApp_Entity")
     fun readNews() : List<NewsApp_Entity>
+
+    @Query("delete from NewsApp_Entity")
+    fun nukeTableNewsApp()
 }
